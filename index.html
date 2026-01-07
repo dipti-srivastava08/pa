@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>10 Days to Your Birthday ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  height:100vh;
+  background:radial-gradient(circle at top,#1a001a,#000);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Poppins',sans-serif;
+  color:white;
+  overflow:hidden;
+}
+
+/* 🌸 Flowers */
+.flower{
+  position:absolute;
+  width:14px;
+  height:14px;
+  background:pink;
+  border-radius:50%;
+  opacity:.4;
+  animation:float 7s infinite linear;
+}
+
+@keyframes float{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(40px,-80px)}
+  100%{transform:translate(0,0)}
+}
+
+/* ❤️ Container */
+.container{text-align:center;position:relative}
+
+/* ❤️ SVG */
+svg{
+  width:260px;
+  height:240px;
+  cursor:pointer;
+}
+
+/* Heart draw */
+#heart-path{
+  fill:transparent;
+  stroke:hotpink;
+  stroke-width:4;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  animation:draw 5s forwards;
+}
+
+/* Fill */
+.fill{animation:fill 1.5s forwards;animation-delay:3s}
+
+/* Blink heart */
+.blink{animation:pulse 1.4s infinite}
+
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fill{to{fill:red}}
+@keyframes pulse{
+  0%{filter:drop-shadow(0 0 6px red)}
+  50%{filter:drop-shadow(0 0 20px hotpink)}
+  100%{filter:drop-shadow(0 0 6px red)}
+}
+
+/* ✨ Text */
+.message{
+  margin-top:30px;
+  font-family:'Great Vibes',cursive;
+  font-size:42px;
+  color:#f34d66;
+  opacity:0;
+}
+
+/* Blink message */
+.blink-text{
+  animation:blinkText 1.3s infinite;
+}
+
+@keyframes blinkText{
+  0%,100%{opacity:1}
+  50%{opacity:.3}
+}
+
+/* Button */
+.btn{
+  margin-top:15px;
+  padding:10px 26px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,hotpink,rgb(247, 148, 148));
+  color:white;
+  font-size:14px;
+  cursor:pointer;
+  display:none;
+}
+
+/* Final message */
+.final{
+  margin-top:25px;
+  font-size:18px;
+  opacity:0;
+  line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0;i<18;i++){
+  const f=document.createElement('div');
+  f.className='flower';
+  f.style.left=Math.random()*100+'vw';
+  f.style.top=Math.random()*100+'vh';
+  document.body.appendChild(f);
+}
+</script>
+
+<div class="container">
+
+  <svg id="heart" viewBox="0 0 512 512">
+    <path id="heart-path"
+      d="M256 464s-192-112-192-272c0-80 64-144 144-144
+      48 0 80 32 80 32s32-32 80-32
+      c80 0 144 64 144 144
+      0 160-192 272-192 272z"/>
+  </svg>
+
+  <div class="message blink-text" id="blinkMsg">
+    10 Days to Your Birthday
+  </div>
+
+  <button class="btn" id="btn">Click Here ❤️</button>
+
+  <div class="final" id="finalMsg">
+    Just 10 more days then your birthday will take the stage <br>
+    Time will fly and soon your day will come <br>
+    Every heartbeat leads to you,<br>
+    and every passing day brings more joy<br>
+    to celebrate the birthday of the precious soul of my life 💖
+  </div>
+
+</div>
+
+<script>
+const heart=document.getElementById("heart");
+const path=document.getElementById("heart-path");
+const blinkMsg=document.getElementById("blinkMsg");
+const btn=document.getElementById("btn");
+const finalMsg=document.getElementById("finalMsg");
+
+setTimeout(()=>path.classList.add("fill"),3000);
+setTimeout(()=>path.classList.add("blink"),4500);
+
+/* Show blinking text + button */
+setTimeout(()=>{
+  blinkMsg.style.opacity=1;
+  btn.style.display="inline-block";
+},5200);
+
+/* Click reveal */
+function reveal(){
+  blinkMsg.style.display="none";
+  btn.style.display="none";
+  finalMsg.style.opacity=1;
+}
+
+heart.onclick=reveal;
+btn.onclick=reveal;
+</script>
+
+</body>
+</html>
